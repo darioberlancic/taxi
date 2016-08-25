@@ -1,0 +1,72 @@
+<div id="bookings">
+  <h3>Available bookings</h3>
+  <div ng-switch="isBookingsAvailable">
+
+    <div ng-switch-when="true">
+      <ul>
+        <a class="booking-item-link" href="javascript:void(0)">
+          <li class="booking-item" ng-repeat="item in bookings track by $index" ng-click="selectBooking(item)">
+            <div class="row">
+              <div class="col-xs-3">
+                <img src="{{item.image}}" alt="Booking image" width="100%;">
+              </div>
+              <div class="col-xs-9">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <span class="booking-item-label booking-item-label-row-1">Flight No:</span>
+                    <span ng-bind="item.flightNo"></span>
+                  </div>
+                  <div class="col-xs-4">
+                    <span class="booking-item-label booking-item-label-row-1">Email:</span>
+                    <span ng-bind="item.email"></span>
+                  </div>
+                  <div class="col-xs-4">
+                    <span class="booking-item-label booking-item-label-row-1">Date:</span>
+                    <span ng-bind="item.date | date"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <span class="booking-item-label booking-item-label-row-2">Name:</span>
+                    <span ng-bind="item.name"></span>
+                  </div>
+                  <div class="col-xs-4">
+                    <span class="booking-item-label booking-item-label-row-2">Landing Time:</span>
+                    <span ng-bind="item.landingTime"></span>
+                  </div>
+                  <div class="col-xs-4"></div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <!-- <span class="booking-item-label booking-item-label-row-3">Description:</span> -->
+                    <span ng-bind="item.description"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <span class="booking-item-label booking-item-label-row-4">Price:</span>
+                    <span ng-bind="item.price"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </a>
+
+      </ul>
+    </div>
+
+    <div ng-switch-when="false">
+      <ul>
+        <li class="booking-item">No available bookings.</li>
+      </ul>
+    </div>
+
+    <div ng-switch-default>
+      <ul>
+        <li class="booking-item">Please enter your route to get bookings list.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>

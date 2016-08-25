@@ -1,0 +1,98 @@
+<style>
+    .typeahead-route .custom-popup-wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        background-color: #f9f9f9;
+    }
+
+    .typeahead-route .custom-popup-wrapper > .message {
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+        color: #868686;
+    }
+
+    .typeahead-route .custom-popup-wrapper > .dropdown-menu {
+        position: static;
+        float: none;
+        display: block;
+        min-width: 160px;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+</style>
+
+<script type="text/ng-template" id="customTemplate.html">
+    <a>
+        <img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">
+        <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>
+
+<script type="text/ng-template" id="customPopupTemplate.html">
+    <div class="custom-popup-wrapper"
+         ng-style="{top: position().top+'px', left: position().left+'px'}"
+         style="display: block;"
+         ng-show="isOpen() && !moveInProgress"
+         aria-hidden="{{!isOpen()}}">
+        <p class="message">select location from drop down.</p>
+
+        <ul class="dropdown-menu" role="listbox">
+            <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }"
+                ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
+                <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<div class='container-fluid typeahead-route'>
+    <!-- CTA & BENEFITS -->
+    <div ng-hide="route" class="ng-hide">
+      <div class="form-group row">
+          <div class="col-sm-12">
+            <h3>Enter your route in the search boxes.</h3>
+            <!-- ... -->
+          </div>
+      </div>
+    </div>
+
+    <!-- ROUTE SEARCH -->
+    <form name="routeSearchForm" novalidate>
+        <div class="form-group row" ng-hide="route">
+            <div class="col-sm-6">
+                <label>Start point</label>
+                <input type="text" ng-model="selectedStart" placeholder="Select start point"
+                       uib-typeahead="point as point.name for point in points | filter:{name:$viewValue}"
+                       typeahead-template-url="customTemplate.html"
+                       class="form-control"
+                       typeahead-show-hint="true"
+                       typeahead-on-select="onSelectStart($item);"
+                       typeahead-min-length="0">
+
+            </div>
+            <div class="col-sm-6">
+                <label>End point</label>
+                <input type="text" ng-model="selectedEnd" placeholder="Select end point"
+                       uib-typeahead="point as point.name for point in points | filter:{name:$viewValue}"
+                       typeahead-template-url="customTemplate.html"
+                       class="form-control"
+                       typeahead-show-hint="true"
+                typeahead-on-select="onSelectEnd($item);"
+                typeahead-min-length="0">
+            </div>
+        </div>
+    </form>
+
+    <!-- LIST BOOKINGS -->
+    <list-bookings></list-bookings>
+
+    <!-- OUTPUT -->
+    <!-- <pre class="well" style="background-color:#eee;" ng-bind="selectedStart | json"></pre> -->
+    <!-- <pre class="well" style="background-color:#eee;" ng-bind="selectedEnd | json"></pre> -->
+
+</div>
