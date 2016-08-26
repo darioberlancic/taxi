@@ -51,6 +51,7 @@
 </script>
 
 <div class='container-fluid typeahead-route'>
+    <div id="holder" ng-show="isSearchVisible">
     <!-- CTA & BENEFITS -->
     <div ng-hide="route" class="ng-hide">
       <div class="form-group row">
@@ -87,9 +88,9 @@
             </div>
         </div>
     </form>
-
+    </div>
     <!-- LIST BOOKINGS -->
-    <list-bookings></list-bookings>
+    <list-bookings bookings="bookings" is-bookings-available="isBookingsAvailable" point-name="pointName"></list-bookings>
 
     <!-- OUTPUT -->
     <!-- <pre class="well" style="background-color:#eee;" ng-bind="selectedStart | json"></pre> -->

@@ -5,9 +5,15 @@
     .module('app.common')
     .config(function($stateProvider, $urlRouterProvider, stripeProvider) {
       $stateProvider
-
+          
           .state('routeselect', {
             url: '/routeselect',
+            templateUrl: 'app/routeselect/routeselect.html',
+            controller: 'RouteSelectController'
+          })
+
+          .state('routeselect.pointName', {
+            url: '/:pointName',
             templateUrl: 'app/routeselect/routeselect.html',
             controller: 'RouteSelectController'
           })

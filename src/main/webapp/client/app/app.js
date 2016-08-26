@@ -46,7 +46,7 @@
             };
 
             // Available routes
-            $scope.availableRoutes = dataService.getRoutes();
+            $scope.availableRoutes = dataService.getBookings();
 
             $scope.processing = false;
             $scope.asyncStart = null;
@@ -94,7 +94,7 @@
                   }, 4000);
                 }
             };
-            
+
             $scope.addBooking = function (dateText) {
                 $scope.booking.dateText = $filter('date')($scope.booking.date, 'fullDate');
                 $scope.booking.routeId = $scope.route.data.id;
@@ -278,7 +278,7 @@
     ])
     .controller('searchByRoute', ['$stateParams', 'dataService', function($stateParams, dataService) {
       // Available routes
-      this.availableRoutes = dataService.getRoutes();
+      this.availableRoutes = dataService.getBookings();
       this.points = dataService.getPoints();
 
       this.searchByRoute = function(){

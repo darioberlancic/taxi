@@ -8,12 +8,50 @@
     dataService.$inject = [];
     function dataService() {
       return {
-          getBookings: getBookings,
-          getPoints: getPoints
+          getBookingsByRoute: getBookingsByRoute,
+          getBookingsById: getBookingsById,
+          getPointIdByName: getPointIdByName,
+          getPointName: getPointName,
+          getPoints: getPoints,
+          getBookings: getBookings
       };
 
-      function getBookings(startPointId, endPointId) {
-        var data = [
+      function getBookingsByRoute(startPointId, endPointId) {
+        var data = getBookings();
+        var results = _.filter(data, function(o) { return o.startPoint === startPointId && o.endPoint === endPointId });
+        return results;
+      }
+
+      function getBookingsById(id) {
+        var data = getBookings();
+        var results = _.filter(data, function(o) { return o.startPoint === id || o.endPoint === id });
+        return results;
+      }
+
+      function getPointIdByName(name) {
+        var points = getPoints();
+        var results = _.filter(points, function(point) {
+          return point.name.replace(/ /g,'').toLowerCase() === name;
+        });
+
+        if (results.length < 1) {
+          return null;
+        }
+        else {
+          return results[0].id;
+        }
+      }
+
+      function getPointName(id) {
+        var points = getPoints();
+        var result = _.find(points, function(point) {
+          return point.id === id;
+        });
+        return result;
+      }
+
+      function getBookings() {
+        return [
           { startPoint: 1, endPoint: 2, flightNo: 'EZ1', email: 'ez1@gmail.com', date: new Date(), name: 'ez1 hall', landingTime: '11:00PM', image: 'http://lesmills.blob.core.windows.net/media/1156/flight-info_icon-13072015.jpg', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", price: "$120" },
           { startPoint: 2, endPoint: 4, flightNo: '122', email: 'zx@gmail.com', date: new Date(), name: 'HHH hall', landingTime: '12:00PM', image: 'http://lesmills.blob.core.windows.net/media/1156/flight-info_icon-13072015.jpg', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", price: "$120" },
           { startPoint: 3, endPoint: 4, flightNo: 'AA1', email: 'AA@gmail.com', date: new Date(), name: 'AAA hall', landingTime: '1:00PM', image: 'http://lesmills.blob.core.windows.net/media/1156/flight-info_icon-13072015.jpg', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", price: "$120" },
@@ -24,10 +62,6 @@
           { startPoint: 6, endPoint: 7, flightNo: 'KKKK', email: 'KKKK@gmail.com', date: new Date(), name: 'KKKK hall', landingTime: '11:00PM', image: 'http://lesmills.blob.core.windows.net/media/1156/flight-info_icon-13072015.jpg', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", price: "$120" },
           { startPoint: 1, endPoint: 2, flightNo: 'HHG', email: 'HHG@gmail.com', date: new Date(), name: 'HHG hall', landingTime: '11:00PM', image: 'http://lesmills.blob.core.windows.net/media/1156/flight-info_icon-13072015.jpg', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", price: "$120" }
         ];
-
-        var results = _.filter(data, function(o) { return o.startPoint === startPointId && o.endPoint === endPointId });
-
-        return results;
       }
 
       function getPoints() {

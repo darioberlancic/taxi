@@ -1,5 +1,5 @@
 <div id="bookings">
-  <h3>Available bookings</h3>
+  <h3>Available bookings <span ng-if="pointName">for {{pointName}}</span></h3>
   <div ng-switch="isBookingsAvailable">
 
     <div ng-switch-when="true">
