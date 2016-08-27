@@ -123,7 +123,7 @@ pre {
 ul.dropdown-menu {
   min-width: 100%;
 }
-/* BOOKINGS LIST STYLES
+/* BOOKINGS LIST & BOOKING FORM
 ============================================================================= */
 #bookings {
   margin-top: 6rem;
@@ -146,4 +146,21 @@ ul.dropdown-menu {
 }
 .booking-item .col-xs-9 .row {
   margin-bottom: 1rem;
+}
+.booking-head {
+  background-color: #333;
+  padding: 2.5rem 0;
+  border-radius: 1rem;
+}
+.booking-body {
+  background-color: #333;
+}
+/* DATEPICKER
+============================================================================= */
+.datepicker {
+  width: 285px;
+  overflow: hidden;
+}
+.datepicker * {
+  outline: none !important;
 }

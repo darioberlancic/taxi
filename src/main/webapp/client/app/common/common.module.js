@@ -10,7 +10,8 @@
       'ui.bootstrap',
       'angular-google-gapi',
       'angular-loading-bar',
-      'angular-stripe'
+      'angular-stripe',
+      'LocalStorageModule'
     ]);
 
 }(angular));

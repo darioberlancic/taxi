@@ -5,7 +5,7 @@
     .module('app.common')
     .config(function($stateProvider, $urlRouterProvider, stripeProvider) {
       $stateProvider
-          
+
           .state('routeselect', {
             url: '/routeselect',
             templateUrl: 'app/routeselect/routeselect.html',
@@ -16,6 +16,13 @@
             url: '/:pointName',
             templateUrl: 'app/routeselect/routeselect.html',
             controller: 'RouteSelectController'
+          })
+
+          .state('booking', {
+            url: '/booking',
+            templateUrl: 'app/booking/booking.html',
+            controller: 'BookingController',
+            params: { o: null }
           })
 
       // route to show our basic form (/form)

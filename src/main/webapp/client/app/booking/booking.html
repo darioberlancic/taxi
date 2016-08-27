@@ -1,0 +1,93 @@
+<div class='container-fluid'>
+    <h3 style="margin-bottom:2.5rem;">Booking for {{ selectedBooking.name }}</h3>
+
+    <div class="row">
+      <!-- pass in the variable if our form is valid or invalid -->
+      <form name="bookingForm" novalidate>
+          <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+          <div class="row booking-head">
+
+            <div class="col-xs-8">
+              <!-- FLIGHT NO. -->
+              <div class="form-group col-xs-12">
+                  <label for="flightNo">Flight No.</label>
+                  <input type="text" class="form-control" name="flightNo" id="flightNo" ng-model="booking.flightNo" required>
+              </div>
+
+              <!-- LANDING TIME -->
+              <div class="form-group col-xs-12">
+                  <label for="landingTime">Landing Time</label>
+                  <input type="text" class="form-control" name="landingTime" id="landingTime" ng-model="booking.landingTime" required>
+              </div>
+
+              <!-- DATE -->
+              <div class="form-group col-xs-12">
+                  <label for="pickupDate">Pickup date</label>
+                  <input type="text" class="form-control" name="pickupDate" id="pickupDate" ng-model="booking.date | date">
+              </div>
+            </div>
+
+            <div class="col-xs-4">
+              <div class="form-group">
+                  <div class="col-xs-12">
+                      <div class="pull-right">
+                        <label style="display:block;">Choose Date</label>
+                        <div uib-datepicker datepicker-options="datepickerOptions" class="datepicker pull-right" ng-model="booking.date"></div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row booking-body">
+
+            <!-- NAME -->
+            <div class="form-group col-xs-12">
+                <label for="name">Your Name</label>
+                <input type="text" class="form-control" name="name" id="name" ng-model="booking.name" required>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group col-xs-12">
+                <label for="email">Your Email</label>
+                <input type="email" class="form-control" name="email" id="email" ng-model="booking.email" required>
+            </div>
+
+            <!-- NUMBER OF PASSENGERS -->
+            <div class="form-group col-xs-6">
+                <label for="numPassengers">Number of Passengers</label>
+                <input type="number" class="form-control" name="numPassengers" id="numPassengers" ng-model="booking.passengers">
+            </div>
+
+            <!-- NUMBER OF SURFBOARDS -->
+            <div class="form-group col-xs-6">
+                <label for="numSurfboards">Number of Surfboards</label>
+                <input type="number" class="form-control" name="numSurfboards" id="numSurfboards" ng-model="booking.surfboards">
+            </div>
+
+            <!-- OTHER REQUIREMENTS -->
+            <div class="form-group col-xs-12">
+                <label for="requirements">Other requirements</label>
+                <input type="text" class="form-control" name="requirements" id="requirements" ng-model="booking.requirements">
+            </div>
+
+            <!-- CTA -->
+            <div class="col-xs-12">
+                <button class="btn btn-block btn-success" style="margin-top:2.5rem;">Summary</button>
+            </div>
+
+          </div>
+
+      </form>
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- OUTPUT -->
+        <pre class="well" style="margin-top:5rem;background-color:#eee;display:block;" ng-bind="booking | json"></pre>
+      </div>
+    </div>
+</div>

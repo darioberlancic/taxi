@@ -3,7 +3,8 @@
 
     angular.module('app', [
       'app.common',
-      'app.routeselect'
+      'app.routeselect',
+      'app.booking'
     ])
 
     .run(['GAuth', '$http', 'GData', '$state', '$rootScope', '$window','$location',
